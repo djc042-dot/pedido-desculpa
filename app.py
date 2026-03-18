@@ -1,3 +1,8 @@
+from flask import Flask, render_template_string
+import os
+
+app = Flask(__name__)
+
 html = """
 <!DOCTYPE html>
 <html>
@@ -41,20 +46,19 @@ html = """
         <p>
             Eu fiquei pensando muito em tudo que aconteceu...<br><br>
 
-            E percebi que não foi só um erro, foram atitudes minhas que te machucaram,
+            Eu sei que minhas atitudes te machucaram,
             e eu assumo isso de verdade.<br><br>
 
             Eu não tô aqui só pra pedir desculpa...<br>
             tô aqui porque eu entendi que preciso mudar.<br><br>
 
-            Eu sei que palavras sozinhas não provam nada,
-            mas minhas atitudes daqui pra frente vão ser diferentes.<br><br>
+            Eu tô disposto a ser melhor, aprender com meus erros
+            e agir diferente daqui pra frente.<br><br>
 
-            Eu tô disposto a ser melhor, a aprender com tudo isso
-            e a não repetir os mesmos erros.<br><br>
+            Eu sei que palavras não provam nada,
+            mas eu quero te mostrar isso com atitudes.<br><br>
 
-            Você é alguém muito importante pra mim,
-            e perder você me fez enxergar o quanto eu preciso evoluir ❤️
+            Você é muito importante pra mim ❤️
         </p>
 
         <button onclick="mostrarMensagem()">
@@ -70,11 +74,16 @@ html = """
             "Eu não espero resposta agora... só queria que você soubesse disso ❤️";
         }
     </script>
-import os
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
 </body>
 </html>
 """
+
+@app.route("/")
+def home():
+    return render_template_string(html)
+
+# 🔥 ESSA PARTE RESOLVE O RENDER
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
